@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo'
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
+      MONGO_INITDB_DATABASE: user
+    ports:
+      - "27017:27017"
+  mongo-express:
+    image: 'mongo-express'
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_AUTH_USERNAME: mongodb
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongodb
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+    ports:
+      - "2022:8081"
+  nodeapplication:
+    build: .
+    environment:
+      ACTIVE_PORT: 8080
+      MODE: production
+    ports:
+      - "8080:8080"
