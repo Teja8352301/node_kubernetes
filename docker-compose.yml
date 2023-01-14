@@ -25,10 +25,14 @@ services:
     environment:
       ACTIVE_PORT: 8080
       MODE: production
+      ME_CONFIG_MONGODB_AUTH_USERNAME: mongodb
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongodb
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
     ports:
       - "8080:8080"
   reactapplication:
-    image: 'tejayerraguntla9/react_kubernetes'
+    image: tejayerraguntla9/react_kubernetes
     environment:
       MODE: production
       NODE_APP_PROD: http://nodeapplication:8080

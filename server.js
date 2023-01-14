@@ -29,7 +29,10 @@ const ACTIVE_PORT = process.env.ACTIVE_PORT;
 
 let mongoConnectionUrl;
 
-if(process.env.MODE==="production"){
+if(process.env.MODE === "k8"){
+  mongoConnectionUrl = `mongodb://${process.env.ME_CONFIG_MONGODB_AUTH_USERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_SERVER}:${process.env.ME_CONFIG_MONGODB_PORT}/?authSource=admin`
+}
+else if(process.env.MODE==="production"){
   mongoConnectionUrl = "mongodb://mongodb:mongodb@mongo:27017/?authSource=admin"
 }else{
   mongoConnectionUrl = "mongodb://localhost:27017/node-docker?retryWrites=true&w=majority"
