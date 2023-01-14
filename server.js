@@ -30,7 +30,7 @@ const ACTIVE_PORT = process.env.ACTIVE_PORT;
 let mongoConnectionUrl;
 
 if(process.env.MODE === "k8"){
-  mongoConnectionUrl = `mongodb://${process.env.ME_CONFIG_MONGODB_AUTH_USERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_SERVER}:${process.env.ME_CONFIG_MONGODB_PORT}/?authSource=admin`
+  mongoConnectionUrl = `mongodb://${process.env.ME_CONFIG_MONGODB_AUTH_USERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_SERVER}/?authSource=admin`
 }
 else if(process.env.MODE==="production"){
   mongoConnectionUrl = "mongodb://mongodb:mongodb@mongo:27017/?authSource=admin"
